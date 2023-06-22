@@ -1,25 +1,35 @@
-import logo from './logo.svg';
+
 import './App.css';
 import React, { useState, useEffect } from "react";
-import axios from Axios;
+import axios from 'axios';
 
 function App() {
-  axios
-  .get("https://countriesnow.space/api/v0.1/countries/flag/images")
-  .then((result) => {
-    console.log(result.data.results[0]);
-  })
-  .catch((error) => {
-    console.log(error);
-  });
+
+  const [banderas, setBanderas] = useState([]);
+  const [bandera, setBandera] = useState([]);
+
+  const ListarBanderas = () => {
+    axios
+      .get("https://countriesnow.space/api/v0.1/countries/flag/images")
+      .then((result) => {
+        const banderas = result.data.data;
+        setBanderas(banderas);
+
+        var item = banderas[Math.floor(Math.random()*banderas.length)];
+        setBandera(item);
+      })
+  }
+
+  useEffect(() => {
+    ListarBanderas()
+  }, []);
+
 
   return (
-    <div className="App">
-      <header className="App-header">
-     
-
-      </header>
-    </div>
+    <>
+    <p>{bandera.name}</p>
+    <img src={bandera.flag} alt=" " />
+    </>
   );
 }
 
