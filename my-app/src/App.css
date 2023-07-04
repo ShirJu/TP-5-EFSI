@@ -1,27 +1,18 @@
 .App {
   text-align: center;
+  background-color:black;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
 
 .App-header {
-  background-color: #282c34;
+  background-color: blueviolet;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   font-size: calc(10px + 2vmin);
-  color: white;
+  color: blueviolet;
 }
 
 .App-link {
@@ -35,4 +26,26 @@
   to {
     transform: rotate(360deg);
   }
+}
+
+.Foto
+{
+width:600px;
+height: 400px;
+
+}
+
+.boton
+{
+position: relative;
+margin-left: 560px;
+margin-top:-69px;
+}
+
+.botonOk
+{
+  position: relative;
+  margin-right: 50px;
+
+
 }

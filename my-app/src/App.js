@@ -10,10 +10,11 @@ function App() {
   const [bandera, setBandera] = useState([]);
   const [handleIniciar, setHandleInciar] = useState(false);
   const [banderaRandom, setBanderaRandom] = useState(null);
+  const [puntos, Setpuntos] = useState(0);
   const [input, setInput] = useState("");
-  const respuesta="";
+  const respuesta = "";
 
-  const ListarBanderas = async() => {
+  const ListarBanderas = async () => {
     axios
       .get("https://countriesnow.space/api/v0.1/countries/flag/images")
       .then((result) => {
@@ -27,44 +28,61 @@ function App() {
   }
 
   const cargarBanderaRandom = () => {
-  
+
     setHandleInciar(true);
-    var random = [Math.floor(Math.random()*banderas.length)];
+    var random = [Math.floor(Math.random() * banderas.length)];
     setBanderaRandom(banderas[random]);
-    }
+  }
 
   useEffect(() => {
     ListarBanderas()
   }, []);
 
   const verificar = () => {
-    
-    if (input == banderaRandom.name){
+
+    if ((input === banderaRandom.name)&&(input!=null)) {
+      Setpuntos(puntos + 10);
       setInput("");
+      console.log(puntos);
+      cargarBanderaRandom();
+    }
+    else {
+      Setpuntos(puntos - 1);
+      setInput("");
+      console.log(puntos);
       cargarBanderaRandom();
     }
   }
-  
-  
+
+
 
   return (
     <>
-    {!handleIniciar && (
-      <div>
-        <button onClick={() => cargarBanderaRandom()}>Iniciar Juego</button>
-      </div>
-    )}
-    {handleIniciar && (
-      <div className='container'>
-        <p>{banderaRandom.name}</p>
-         <img src={banderaRandom.flag} alt="" />
-         <input value={input} onChange={handleChange}></input><button className='btn btn-primary' onClick={() => verificar()}>Ok</button><button className='btn btn-danger ' onClick={() => cargarBanderaRandom()}>Saltar</button>
-      </div>
-    )}
+      {!handleIniciar && (
+        <div>
+          <button onClick={() => cargarBanderaRandom()}>Iniciar Juego</button>
+        </div>
+      )}
 
-    
-    
-   
+      {handleIniciar && (
+        
+       <div className='container'>
+          <center><h1>Puntos {puntos}</h1> </center>
+          <p>{banderaRandom.name}</p>
+          <center><img src={banderaRandom.flag} alt="" className='Foto'/></center>
+          <br></br>
+          <center><input value={input} onChange={handleChange}></input></center>
+          <br></br>
+          <center><button className='btn btn-primary botonOk ' onClick={() => verificar()}>Ok</button></center>
+        <button className='btn btn-danger boton' onClick={() => cargarBanderaRandom()}>Saltar</button>
+        
+        </div> 
+        
+      )}
+
+
+
+
     </>
   );
 }
