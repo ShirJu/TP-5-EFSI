@@ -39,8 +39,13 @@ function App() {
   }, []);
 
   const verificar = () => {
+    if ((input!=null)) {
+      alert('Ingrese algo porfavor');
+    }
+    else{
 
-    if ((input == banderaRandom.name) && (input!=null)) {
+
+    if (input == banderaRandom.name) {
 
       Setpuntos(puntos + 10);
       setInput("");
@@ -56,6 +61,7 @@ function App() {
       console.log(puntos);
       cargarBanderaRandom();
     }
+  }
   }
 
   return (
