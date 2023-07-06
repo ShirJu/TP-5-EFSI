@@ -3,6 +3,11 @@
   background-color:black;
 }
 
+body{
+
+  background-image: url("../public/fondoBanderas.jpg");
+  color: antiquewhite;
+}
 
 .App-header {
   background-color: blueviolet;
