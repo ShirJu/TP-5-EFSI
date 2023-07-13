@@ -39,29 +39,30 @@ function App() {
   }, []);
 
   const verificar = () => {
-    if ((input!=null)) {
-      alert('Ingrese algo porfavor');
+
+    if (input != null || input != undefined) {
+
+      if (input.toLowerCase() == banderaRandom.name.toLowerCase()) {
+
+        Setpuntos(puntos + 10);
+        setInput("");
+
+        console.log(puntos);
+        cargarBanderaRandom();
+      }
+      else {
+        
+        Setpuntos(puntos - 1);
+        setInput("");
+
+        console.log(puntos);
+        cargarBanderaRandom();
+      }
     }
     else{
 
-
-    if (input == banderaRandom.name) {
-
-      Setpuntos(puntos + 10);
-      setInput("");
-
-      console.log(puntos);
-      cargarBanderaRandom();
+      alert("Ingrese un pais por favor");
     }
-    else {
-
-      Setpuntos(puntos - 1);
-      setInput("");
-
-      console.log(puntos);
-      cargarBanderaRandom();
-    }
-  }
   }
 
   return (
@@ -79,7 +80,7 @@ function App() {
           <p>{banderaRandom.name}</p>
           <center><img src={banderaRandom.flag} alt="" className='Foto'/></center>
           <br></br>
-          <center><input value={input} onChange={handleChange}></input></center>
+          <center><input value={input} onChange={handleChange} required></input></center>
           <br></br>
           <center><button className='btn btn-primary botonOk ' onClick={() => verificar()}>Ok</button></center>
         <button className='btn btn-danger boton' onClick={() => cargarBanderaRandom()}>Saltar</button>
@@ -87,10 +88,6 @@ function App() {
         </div> 
         
       )}
-
-
-
-
     </>
   );
 }
